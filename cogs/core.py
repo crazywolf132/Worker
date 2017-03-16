@@ -21,8 +21,8 @@ class Plugin:
             self.install = ['install']
             self.clear = ['clear', 'cls', 'clr']
             self.done = ['done']
-            ## Add install and clear
-            self.command = self.make + self.enter + self.leave + self.curr + self.delete + self.load + self.echo + self.list + self.done
+
+            self.command = self.make + self.enter + self.leave + self.curr + self.delete + self.load + self.echo + self.list self.clear + self.done + self.done
 
         def action(self, command):
             _tokens = command.split(" ")
