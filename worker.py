@@ -61,6 +61,8 @@ def _letsDoIt(_input):
         else:
             _toInstall = ""
         _install(_toInstall)
+    elif _task == "clear" or _task == "cls":
+        os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def _make(_toMake, _fileOrFolder):
