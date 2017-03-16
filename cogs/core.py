@@ -21,8 +21,9 @@ class Plugin:
             self.install = ['install']
             self.clear = ['clear', 'cls', 'clr']
             self.done = ['done']
+            self.cog = ['cog', 'cogs']
 
-            self.command = self.make + self.enter + self.leave + self.curr + self.delete + self.load + self.echo + self.list self.clear + self.done + self.done
+            self.command = self.make + self.enter + self.leave + self.curr + self.delete + self.load + self.echo + self.list + self.install + self.clear + self.done + self.cog
 
         def action(self, command):
             _tokens = command.split(" ")
@@ -74,7 +75,13 @@ class Plugin:
                 os.system('cls' if os.name == 'nt' else 'clear')
             elif _task in self.done:
                 print("Goodbye.")
-
+            elif _task in self.cog:
+                if len(_tokens) == 2:
+                    _toInstall = _tokens[1]
+                else:
+                    ## Run through all cogs, and check if they have an "active" tag.
+                    ## Display how many are active.
+                    return
 
 
 def _make(_toMake, _fileOrFolder):
