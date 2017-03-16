@@ -1,4 +1,8 @@
-import os,shutil
+import sys,os,shutil,subprocess
+try:
+    from subprocess import DEVNULL  # Python 3.
+except ImportError:
+    DEVNULL = open(os.devnull, 'wb')
 
 _cur_file = ""
 _cur_dir = os.getcwd()
@@ -53,7 +57,7 @@ def _letsDoIt(_input):
         _list(_toList)
     elif _task == "install":
         if len(_tokens) == 2:
-            _toInstall = _token[1]
+            _toInstall = _tokens[1]
         else:
             _toInstall = ""
         _install(_toInstall)
@@ -142,11 +146,18 @@ def _list(_toList):
        print ("- " + _file)
 
 def _install(_toInstall):
+    _tokens = _toInstall.split("/")
     if _toInstall == "":
         if os.path.isfile("install.worker"):
             _load("install.worker")
         else:
             print("Sorry, nothing to install.")
+    elif _toInstall != "":
+        _job = ["clone"]
+        _job.append("https://github.com/" + _toInstall)
+        subprocess.Popen(['git'] + list(_job), stdout=DEVNULL, stderr=DEVNULL)
+        _enter(_tokens[1])
+        _install("")
 
 
 if __name__=='__main__':
