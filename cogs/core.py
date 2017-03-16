@@ -81,8 +81,15 @@ class Plugin:
                 else:
                     ## Run through all cogs, and check if they have an "active" tag.
                     ## Display how many are active.
+                    _check_Cogs()
                     return
 
+## Everything to do with cogs. ##
+
+def _install_cog(_toInstall):
+    print("this is not done yet.")
+
+## Everything to do with the core. ##
 
 def _make(_toMake, _fileOrFolder):
     global _cur_dir
