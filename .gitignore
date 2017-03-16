@@ -1,7 +1,7 @@
 # Worker stuff
 *.work
-**/
 .DS_Store
+*.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
