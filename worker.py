@@ -46,11 +46,17 @@ def _letsDoIt(_input):
         _toEcho = _tokens[1]
         print(_toEcho)
     elif _task == "list" or _task == "ls":
-        if len(_tokens) == 3:
-            _toList = _tokens[2]
+        if len(_tokens) == 2:
+            _toList = _tokens[1]
         else:
             _toList = _cur_dir
         _list(_toList)
+    elif _task == "install":
+        if len(_tokens) == 2:
+            _toInstall = _token[1]
+        else:
+            _toInstall = ""
+        _install(_toInstall)
 
 
 def _make(_toMake, _fileOrFolder):
@@ -134,6 +140,13 @@ def _list(_toList):
     # This would print all the files and directories
     for _file in _dirs:
        print ("- " + _file)
+
+def _install(_toInstall):
+    if _toInstall == "":
+        if os.path.isfile("install.worker"):
+            _load("install.worker")
+        else:
+            print("Sorry, nothing to install.")
 
 
 if __name__=='__main__':
