@@ -1,14 +1,21 @@
-import os, sys
+import os, sys, collections, logging
+_arg_string = ""
 def _main():
-    _response = ""
-
-    while _response != "done":
-        _response = raw_input("Job > ")
-        _letsDoIt(_response)
+    if len(sys.argv) > 1:
+        global _arg_string
+        for _arg in sys.argv[1:]:
+            if _arg == "-i":
+                _arg = "install"
+            _arg_string += _arg + " "
+        print(_arg_string)
+        _letsDoIt(_arg_string)
+    else:
+        _response = ""
+        while _response != "done":
+            _response = raw_input("Job > ")
+            _letsDoIt(_response)
 
 def _letsDoIt(_input):
-    _tokens = _input.split(' ')
-    _task = _tokens[0]
 
     path = os.path.dirname(os.path.abspath(__file__)) + '/cogs/'
     plugins = {}

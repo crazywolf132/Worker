@@ -22,8 +22,10 @@ class Plugin:
             self.clear = ['clear', 'cls', 'clr']
             self.done = ['done']
             self.cog = ['cog', 'cogs']
+            self.exc = ['exc']
+            self.update = ['update']
 
-            self.command = self.make + self.enter + self.leave + self.curr + self.delete + self.load + self.echo + self.list + self.install + self.clear + self.done + self.cog
+            self.command = self.update + self.make + self.enter + self.leave + self.curr + self.delete + self.load + self.echo + self.list + self.install + self.clear + self.done + self.cog + self.exc
 
         def action(self, command):
             _tokens = command.split(" ")
@@ -81,12 +83,21 @@ class Plugin:
                 else:
                     ## Run through all cogs, and check if they have an "active" tag.
                     ## Display how many are active.
-                    _check_Cogs()
+                    _check_cogs()
                     return
+            elif _task in self.exc:
+                _toEx = _tokens[1:]
+                _exc(_toEx)
+            elif _task in self.update:
+                print("This current does not work the way it should...")
+
 
 ## Everything to do with cogs. ##
 
 def _install_cog(_toInstall):
+    print("this is not done yet.")
+
+def _check_cogs():
     print("this is not done yet.")
 
 ## Everything to do with the core. ##
@@ -200,3 +211,15 @@ def _install(_toInstall):
         subprocess.Popen(['git'] + list(_job), stdout=DEVNULL, stderr=DEVNULL)
         _enter(_tokens[1])
         _install("")
+
+def _exc(_toEx):
+    _tokens = _toEx.split('"')
+    print(_tokens)
+    os.system(_tokens)
+
+def _update():
+    ## We need to compare the version codes... so, i might make it execute a command.
+    ## if it is newer on the server, than here... download through the _install function
+    ## then, that should install it to... because i will create the install file.
+    os.system('clear')
+    print("This is not done yet.")
